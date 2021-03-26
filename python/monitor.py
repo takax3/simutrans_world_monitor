@@ -40,7 +40,7 @@ class FileChangeHandler(FileSystemEventHandler):
              coro = ch.send(s)
              asyncio.run_coroutine_threadsafe(coro, client.loop)
 
-class FileChangeHandler_2(FileSystemEventHandler_2):
+class FileChangeHandler_2(FileSystemEventHandler):
      # ファイル変更時のイベント
      def on_modified(self, event):
          filepath = event.src_path
