@@ -13,7 +13,7 @@ function get_player_from_num(str, idx) {
   }
   if(player==null || !player.is_valid()) {
     local f = file(path_output,"w")
-    f.writestr("そのプレイヤー番号はあかんわ．")
+    f.writestr("そのプレイヤー番号の会社は存在しません。")
     f.close()
     return null
   } else {
@@ -32,28 +32,4 @@ function get_player_list() {
     }
   }
   return pl_list
-}
-
-function _step_generator(iteratable) {
-  foreach (obj in iteratable) {
-    yield obj
-  }
-}
-
-function filter(array, func) {
-  local new_array = []
-  foreach (obj in _step_generator(array)) {
-    if(func(obj)) {
-      new_array.append(obj)
-    }
-  }
-  return new_array
-}
-
-function map(array, func) {
-  local new_array = []
-  foreach (obj in _step_generator(array)) {
-    new_array.append(func(obj))
-  }
-  return new_array
 }

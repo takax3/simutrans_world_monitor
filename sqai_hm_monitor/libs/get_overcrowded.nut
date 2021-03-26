@@ -3,14 +3,15 @@ include("libs/common")
 
 // playerがnullのときは全てのplayerを検査対象とする．
 function _get_overcrowded_halts(player, ratio) {
-  local och = halt_list_x()
-  if(player!=null) {
-    local pl = player
+  local och = []
+  foreach (h in halt_list_x()) {
     //なぜかinstanceの比較では==が通らない
-    och = filter(och, (@(h) h.get_owner().get_name()==pl.get_name()))
+    if(player==null || h.get_owner().get_name()==player.get_name()) {
+      och.append(h)
+    }
   }
   local r = ratio
-  och = filter(och, (@(h) h.get_waiting()[0]>h.get_capacity(good_desc_x.passenger)*r))
+  och = och.filter(@(i,h) h.get_waiting()[0]>h.get_capacity(good_desc_x.passenger)*r)
   return och
 }
 
@@ -25,9 +26,9 @@ class get_overcrowded_cmd {
     local och = _get_overcrowded_halts(player,1)
     local out_str = ""
     if(och.len()==0) {
-      out_str = player.get_name() + " の駅に赤棒はないです．すばらしい．"
+      out_str = player.get_name() + " の駅では混雑していません。"
     } else {
-      out_str = player.get_name() + " の赤棒駅はこれや！\n"
+      out_str = player.get_name() + " の以下の駅が混雑しています。\n"
       foreach (h in och) {
         out_str += (h.get_name() + " ... " + h.get_waiting()[0].tostring() + "/" + h.get_capacity(good_desc_x.passenger).tostring() + "人\n")
       }
@@ -52,7 +53,7 @@ class chk_overcrowded_cmd extends monitoring_base_cmd {
     local prev_och = overcrowded_halts //ラムダ式のために必要
     // なぜかhalt_xのinstance比較がいつもfalseになるので，nameで比較する．
     // あたらしくovercrowdedになったhalt
-    local new_och = filter(och, (@(h) filter(prev_och, (@(k) k.get_name()==h.get_name())).len()==0))
+    local new_och = och.filter(@(i,h) prev_och.filter(@(j,k) k.get_name()==h.get_name()).len()==0)
     overcrowded_halts = och //更新
     if(new_och.len()==0) {
       // 新しく混雑した駅はないので，終了．
@@ -60,8 +61,8 @@ class chk_overcrowded_cmd extends monitoring_base_cmd {
     }
     
     // プレイヤーごとにまとめる
-    local player_new_och = map(get_player_list(), (@(p) [p, filter(new_och, (@(h) p.get_name()==h.get_owner().get_name()))]))
-    local out_str = "赤棒立ってる駅あるで．\n"
+    local player_new_och = get_player_list().map(@(p) [p, new_och.filter(@(i,h) p.get_name()==h.get_owner().get_name())])
+    local out_str = "【混雑情報】以下の駅が混雑しています。\n"
     foreach (pn in player_new_och) {
       if(pn[1].len()==0) {
         //この会社に混雑してる駅はない．

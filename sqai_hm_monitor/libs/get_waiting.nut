@@ -10,7 +10,7 @@ class get_waiting_cmd {
     local f = file(path_output,"w")
     local params = split(str,",")
     if(params.len()==1) {
-      f.writestr("駅名を指定してな．")
+      f.writestr("駅名を指定してください。")
       f.close() 
       return
     }
@@ -24,19 +24,19 @@ class get_waiting_cmd {
       }
     }
     if(this_halt==null) {
-      f.writestr("停車場 " + sta_name + " ←ないです．")
+      f.writestr("停車場 " + sta_name + " は存在しません。綴りに間違いがないか確認してください。")
       f.close() 
       return
     }
     
     //目的地別のリストを作る
     local dest_halts = this_halt.get_connections(good_desc_x.passenger)
-    local dests = map(dest_halts, (@(d) [d, this_halt.get_freight_to_halt(good_desc_x.passenger, d)])) //[[halt, 待機数]]
-    dests = filter(dests, (@(d) d[1]>0)) //待機客0人を除外
+    local dests = dest_halts.map(@(d) [d, this_halt.get_freight_to_halt(good_desc_x.passenger, d)]) //[[halt, 待機数]]
+    dests = dests.filter(@(i,d) d[1]>0) //待機客0人を除外
     dests.sort(@(a,b) b[1]<=>a[1]) //客の多さでソート．降順
     
     //結果を出力
-    local out_str = sta_name + "の待機客は " + this_halt.get_waiting()[0].tostring() + "人/" + this_halt.get_capacity(good_desc_x.passenger).tostring() + "人 やね．\n"
+    local out_str = sta_name + "の待機客は " + this_halt.get_waiting()[0].tostring() + "人/" + this_halt.get_capacity(good_desc_x.passenger).tostring() + "人 です。\n"
     local num_of_dests = 5 //デフォルトでは5件
     if(params.len()>=3) {
       try{

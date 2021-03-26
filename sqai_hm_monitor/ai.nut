@@ -36,7 +36,7 @@ function process_request() {
     commands[cmd_str].exec(str)
   } else {
     local f = file(path_output,"w")
-    f.writestr("コマンド" + cmd_str + " ←ないです．\n使い方はココ見てな．\n https://github.com/teamhimeh/simutrans_world_monitor#使用方法")
+    f.writestr("コマンド" + cmd_str + " は存在しませんでした。\n使い方は以下のリンクを参照してください。\n https://github.com/teamhimeh/simutrans_world_monitor#使用方法")
     f.close()
   }
   f = file(path_cmd,"w")
