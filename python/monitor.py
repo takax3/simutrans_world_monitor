@@ -40,6 +40,29 @@ class FileChangeHandler(FileSystemEventHandler):
              coro = ch.send(s)
              asyncio.run_coroutine_threadsafe(coro, client.loop)
 
+class FileChangeHandler_2(FileSystemEventHandler_2):
+     # ファイル変更時のイベント
+     def on_modified(self, event):
+         filepath = event.src_path
+         filename = os.path.basename(filepath)
+         if(filename!="out_2.txt"):
+             return
+         with open(FILE_OUT, encoding='utf-8') as f:
+             s = f.read()[:1990]
+             hash = hashlib.md5(s.encode()).hexdigest()
+             global prev_out_hash
+             if s=='empty' or hash==prev_out_hash:
+                 return
+             prev_out_hash = hash
+             ch = client.get_channel(config.CHANNEL_ID_2)
+             global waiting_message
+             if waiting_message!=None:
+                 coro = ch.delete_messages([waiting_message])
+                 asyncio.run_coroutine_threadsafe(coro, client.loop)
+                 waiting_message = None
+             coro = ch.send(s)
+             asyncio.run_coroutine_threadsafe(coro, client.loop)
+
 # 起動時に動作する処理
 @client.event
 async def on_ready():

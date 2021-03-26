@@ -3,4 +3,5 @@
 # 文字列冒頭の r は，ファイルパスのエスケープのための印です．
 TOKEN = r"fugafuga"
 CHANNEL_ID = 1145141919810
+CHANNEL_ID_2 = 1919810114514
 DIRECTORY = r"/Users/XXX/simutrans"
