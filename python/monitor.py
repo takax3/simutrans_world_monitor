@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*- 
 # pip install discord.py watchdog
+
 import discord
 import os
 import time
 import asyncio
+import hashlib
 import config
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -12,6 +15,7 @@ FILE_OUT = config.DIRECTORY + '/file_io/out.txt'
 waiting_message = None
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
+prev_out_hash = None #二重書き込み対策（主にWindows）
 
 class FileChangeHandler(FileSystemEventHandler):
      # ファイル変更時のイベント
@@ -22,8 +26,11 @@ class FileChangeHandler(FileSystemEventHandler):
              return
          with open(FILE_OUT, encoding='utf-8') as f:
              s = f.read()
-             if s=='empty':
+             hash = hashlib.md5(s.encode()).hexdigest()
+             global prev_out_hash
+             if s=='empty' or hash==prev_out_hash:
                  return
+             prev_out_hash = hash
              ch = client.get_channel(config.CHANNEL_ID)
              global waiting_message
              if waiting_message!=None:
@@ -45,7 +52,8 @@ async def on_ready():
 async def on_message(message):
     channel = client.get_channel(config.CHANNEL_ID)
     # 指定チャンネルでの指定フォーマットの人間のメッセージのみ反応
-    if message.author.bot or message.channel != channel or message.content[0]!='?':
+    content = message.content.replace('？','?').replace('，',',')
+    if message.author.bot or message.channel != channel or content[0]!='?':
         return
             
     with open(FILE_CMD, encoding='utf-8') as f:
@@ -55,8 +63,10 @@ async def on_message(message):
             return
     with open(FILE_CMD, mode='w', encoding='utf-8') as f:
         global waiting_message
-        f.write(message.content[1:])
+        f.write(content[1:])
         waiting_message = await channel.send('応答待ちです。しばらくお待ちください。')
+        global prev_out_hash
+        prev_out_hash = None
         
 def generate_io_files():
     os.makedirs(config.DIRECTORY+'/file_io', exist_ok=True)
