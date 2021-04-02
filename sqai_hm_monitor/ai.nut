@@ -5,6 +5,8 @@ include("libs/get_players")
 include("libs/get_overcrowded")
 include("libs/get_time")
 include("libs/get_stucked")
+include("libs/get_finance")
+include("libs/get_help")
 include("config")
 
 function start(pl_num) {
@@ -36,7 +38,7 @@ function process_request() {
     commands[cmd_str].exec(str)
   } else {
     local f = file(path_output,"w")
-    f.writestr("コマンド" + cmd_str + " は存在しません。\n使い方は以下のリンクを参照してください。\n https://github.com/teamhimeh/simutrans_world_monitor#使用方法")
+    f.writestr("コマンド" + cmd_str + " は存在しません。\nヘルプは`?help`と入力してください。")
     f.close()
   }
   f = file(path_cmd,"w")
