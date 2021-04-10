@@ -5,6 +5,6 @@ TOKEN = r"fugafuga"
 CHANNEL_ID = 1145141919810
 DIRECTORY = r"/Users/XXX/simutrans"
 
-TEXT_HELLO = 'おはようさん．?をつけてなんでもいうてな．'
-TEXT_BUSY  = '今忙しいねん'
-TEXT_WAIT  = '応答待ち．ちょっとまってな．'
+TEXT_HELLO = 'botを起動しました。使用方法は`?help`と入力してください。'
+TEXT_BUSY  = '処理に失敗しました。'
+TEXT_WAIT  = '処理中です。しばらくお待ちください。'
