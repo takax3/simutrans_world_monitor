@@ -1,4 +1,6 @@
 // よく使うであろう関数をまとめたファイル．
+// メッセージ定義
+local text_invalid_idx = "指定したプレイヤー番号の会社はありません。綴りに誤りがないか確認してください。"
 
 // str:受信文字列, idx:番号の位置
 // だめなときはエラーメッセージを書き込んだ上でnullを返す．
@@ -13,7 +15,7 @@ function get_player_from_num(str, idx) {
   }
   if(player==null || !player.is_valid()) {
     local f = file(path_output,"w")
-    f.writestr("そのプレイヤー番号の会社は存在しません。")
+    f.writestr(text_invalid_idx)
     f.close()
     return null
   } else {
@@ -27,9 +29,7 @@ function get_player_list() {
     local pl = player_x(i)
     if(pl.is_valid()) {
       pl_list.append(pl)
-    } else {
-      break
-    }
+    } 
   }
   return pl_list
 }
