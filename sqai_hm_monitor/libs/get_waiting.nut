@@ -1,5 +1,5 @@
 // メッセージ定義
-local text_require_param = "駅名を指定してください。"
+local text_require_param = "駅名を指定してください。\nこのコマンドの使用方法は`?待機,<駅名>,[エントリ数]`です。"
 local text_invalid_param = "停車場 %s は存在しません。綴りに間違いがないか確認してください。"
 local text_waiting_title = "%sの待機客は %d/%d人です。\n" //%sは停留所名，%dは待機客数，停留所容量
 local text_dest_info = "%d人 ... %s\n" //%dは待機客数，%sは目的地
