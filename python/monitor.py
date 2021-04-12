@@ -7,6 +7,7 @@ import time
 import asyncio
 import hashlib
 import config
+import help
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -55,7 +56,9 @@ async def on_message(message):
     content = message.content.replace('？','?').replace('，',',')
     if message.author.bot or message.channel != channel or content[0]!='?' or len(content)<2:
         return
-            
+    elif content in help.helps :
+        await channel.send(help.helps[content])
+        return
     with open(FILE_CMD, encoding='utf-8') as f:
         s = f.read()
         if s and not s.startswith('empty'):

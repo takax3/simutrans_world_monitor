@@ -8,7 +8,6 @@ include("libs/get_stucked")
 include("libs/get_finance")
 include("libs/get_lines")
 include("libs/get_halts")
-include("libs/get_help")
 
 //コマンド一覧．不要な機能があればコメントアウトしてください．
 commands["待機"] <- get_waiting_cmd()
