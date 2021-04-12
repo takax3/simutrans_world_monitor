@@ -1,10 +1,10 @@
 // メッセージ定義
-local text_require_param = "路線を番号で指定してな．"
-local text_invalid_param = "%d 番の路線はあらへんで．"
-local text_halt_title_rank = "%s （%s）が止まる駅で繁盛しとるんはこのへんや！ \n" //%sは停留所名, 会社名
+local text_require_param = "路線を番号で指定してください。 \nこのコマンドの使用方法は`?停車駅,<路線番号>,[停車場数]`です。"
+local text_invalid_param = "%d 番の路線はありません。"
+local text_halt_title_rank = "路線 %s （%s）の停車駅の乗降者数ランキングは次のとおりです。 \n" //%sは停留所名, 会社名
 local text_halt_rank = "%s 人 ... %s\n" //%sは乗降客数，駅名
-local text_halt_caption_rank = "ちなみに利用者数は前の月やで．"
-local text_halt_title_all = "%s （%s）はこんな感じにとまるで！ \n" //%sは停留所名, 会社名
+local text_halt_caption_rank = "※利用者数は前月のものです。"
+local text_halt_title_all = "路線 %s （%s） の停車駅は次のとおりです。\n" //%sは停留所名, 会社名
 
 include("libs/common")
 
