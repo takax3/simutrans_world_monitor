@@ -8,6 +8,7 @@ import asyncio
 import hashlib
 import config
 import help
+import knAHNS
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -54,11 +55,20 @@ async def on_message(message):
     channel = client.get_channel(config.CHANNEL_ID)
     # 指定チャンネルでの指定フォーマットの人間のメッセージのみ反応
     content = message.content.replace('？','?').replace('，',',')
+    AHNS_dictionary = content.find('?これなにAHNS')
     if message.author.bot or message.channel != channel or content[0]!='?' or len(content)<2:
         return
     elif content in help.helps :
         await channel.send(help.helps[content])
         return
+    elif AHNS_dictionary == 0 :
+        knAHNS_1, knAHNS_2 = content.split(',', 1)
+        if knAHNS_2 in knAHNS.knAHNSs:
+            await channel.send(knAHNS.knAHNSs[knAHNS_2])
+            return
+        else:
+            await channel.send('指定された名前の記事はありません。')
+            return
     with open(FILE_CMD, encoding='utf-8') as f:
         s = f.read()
         if s and not s.startswith('empty'):
