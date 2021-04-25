@@ -1,5 +1,5 @@
 // メッセージ定義
-local text_invalid_cmd = "コマンド %s は存在しません。\使用方法は`?help`と入力してください。"
+local text_invalid_cmd = "コマンド %s は存在しません。\n使用方法は`?help`と入力してください。"
 
 include("config")
 

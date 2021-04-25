@@ -25,8 +25,6 @@ commands["路線"] <- get_lines_cmd()
 commands["route"] <- get_lines_cmd()
 commands["停車駅"] <- get_halts_cmd()
 commands["halt"] <- get_halts_cmd()
-commands["ヘルプ"] <- get_help_cmd()
-commands["help"] <- get_help_cmd()
 
 //モニタリング一覧．不要な機能があればコメントアウトしてください．
 monitored.append(chk_overcrowded_cmd(8, 1.5, 1000)) //赤棒検知． 引数...(頻度,警報を出す倍率, 警報を出す下限)
