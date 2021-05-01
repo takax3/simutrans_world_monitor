@@ -1,6 +1,6 @@
 // メッセージ定義
 local text_require_param = "路線を番号で指定してください。 \nこのコマンドの使用方法は`?停車駅,<路線番号>,[停車場数]`です。"
-local text_invalid_param = "%d 番の路線はありません。"
+local text_invalid_param = "%s 番の路線はありません。"
 local text_halt_title_rank = "路線 %s （%s）の停車駅の乗降者数ランキングは次のとおりです。 \n" //%sは停留所名, 会社名
 local text_halt_rank = "%s 人 ... %s\n" //%sは乗降客数，駅名
 local text_halt_caption_rank = "※利用者数は前月のものです。"
@@ -25,14 +25,18 @@ class get_halts_cmd {
     }
     
     // 路線番号に対応する路線があるか
-    local line_num = params[1].tointeger()
-    if(!(line_x(line_num).is_valid())) {
-      f.writestr(format(text_invalid_param, line_num))
+    local line = null
+    try {
+      line = line_x(params[1].tointeger())
+    } catch (err) {
+      // pass
+    }
+    if(line==null || !line.is_valid()) {
+      f.writestr(format(text_invalid_param, params[1]))
       f.close() 
       return
     }
-    
-    local line = line_x(line_num)
+    // lineには存在する路線が代入されていることが保証された
     local pl = line.get_owner()
     
     // 路線の停車駅を取得
