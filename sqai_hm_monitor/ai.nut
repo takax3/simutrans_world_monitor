@@ -2,6 +2,7 @@
 local text_invalid_cmd = "コマンド %s は存在しません。\n使用方法は`?help`と入力してください。"
 
 include("config")
+include("libs/get_help")
 
 function start(pl_num) {
   
@@ -31,9 +32,7 @@ function process_request() {
   if(cmd_str in commands) {
     commands[cmd_str].exec(str)
   } else {
-    local f = file(path_output,"w")
-    f.writestr(format(text_invalid_cmd, cmd_str))
-    f.close()
+    send_help(cmd_str)
   }
   f = file(path_cmd,"w")
   f.writestr("empty")
