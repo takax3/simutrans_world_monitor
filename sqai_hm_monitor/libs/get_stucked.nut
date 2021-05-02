@@ -4,6 +4,7 @@ local text_player_title = "<%s>\n" //%sはプレイヤー名
 
 include("libs/monitoring_base")
 include("libs/common")
+include("libs/embed_out")
 
 class chk_stucked_cmd extends monitoring_base_cmd {
   stucked_lines = [] // stuckした路線の[名前,プレイヤー名]を保持する
@@ -14,10 +15,25 @@ class chk_stucked_cmd extends monitoring_base_cmd {
     warning_ratio = wr
   }
   
+  // convoyの座標が車庫かどうか
+  // 出庫待ちの編成を判定から除外する
+  function _is_in_depot(cnv) {
+    local pos = cnv.get_pos()
+    local tile = tile_x(pos.x, pos.y, pos.z)
+    local mo_depots = [mo_depot_rail, mo_depot_road, mo_depot_water, mo_depot_air, mo_depot_monorail, mo_depot_tram, mo_depot_maglev, mo_depot_narrowgauge]
+    foreach (m in mo_depots) {
+      if(tile!=null && tile.find_object(m)!=null) {
+        return true
+      }
+    }
+    return false
+  }
+  
   function _is_stucked_line(line) {
     local wr = warning_ratio
-    local num_stucked = filter(line.get_convoy_list(), (@(c) c.is_waiting())).len()
-    return num_stucked >= 5 && num_stucked >= line.get_convoy_list().get_count() * wr
+    local cnv_to_check = filter(line.get_convoy_list(), (@(c) !c.is_in_depot()))
+    local num_stucked = filter(cnv_to_check, (@(c) c.is_waiting() && !_is_in_depot(c))).len()
+    return num_stucked >= 5 && num_stucked >= cnv_to_check.len() * wr
   }
   
   // lineはstucked_linesの中に存在していないか？
@@ -30,8 +46,9 @@ class chk_stucked_cmd extends monitoring_base_cmd {
     local ms = monitoring_state()
     local p_name = "chk_stucked_cmd"
     ms.register(p_name,[["sl", []]])
+    // 渋滞路線をチェック
     stucked_lines = ms.state[p_name]["sl"]
-    local stucked = [] //渋滞路線リスト
+    local stucked = [] // 渋滞路線リスト
     foreach (pl in get_player_list()) {
       stucked.extend(filter(pl.get_line_list(), _is_stucked_line))
     }
@@ -47,14 +64,14 @@ class chk_stucked_cmd extends monitoring_base_cmd {
     local pl_n_stucked = map(get_player_list(), (@(pl) [pl, filter(new_stucked, @( line) line.get_owner().get_name()==pl.get_name())]))
     pl_n_stucked = filter(pl_n_stucked, (@(p) p[1].len()>0))
     local out_str = text_title
+    local pl_stucked_msgs = []
     foreach (pls in pl_n_stucked) {
-      out_str += format(text_player_title, pls[0].get_name())
+      local out_str = ""
       foreach (line in pls[1]) {
         out_str += (line.get_name() + "\n")
       }
+      pl_stucked_msgs.append([format(text_player_title, pls[0].get_name()), out_str])
     }
-    local f = file(path_output,"w")
-    f.writestr(rstrip(out_str))
-    f.close()
+    embed_warn(text_title, null, pl_stucked_msgs)
   }
 }
