@@ -29,7 +29,7 @@ async def on_message(message):
     if message.author.bot or message.channel != channel or content[0]!='?' or len(content)<2:
         return
     elif content in help.helps :
-        await channel.send(help.helps[content])
+        await channel.send(embed=help.helps[content])
         return
     elif AHNS_dictionary == 0 :
         knAHNS_1, knAHNS_2 = content.split(',', 1)
@@ -37,7 +37,8 @@ async def on_message(message):
             await channel.send(embed=knAHNS.knAHNSs[knAHNS_2])
             return
         else:
-            await channel.send('指定された名前の記事はありません。')
+            embed=discord.Embed(title="指定された名前の記事はありません。", description="記事一覧は`?これなにAHNS,list,[カテゴリ名]`で取得できます。", color=0x00ff00)
+            await channel.send(embed=embed)
             return
     with open(FILE_CMD, encoding='utf-8') as f:
         s = f.read()
