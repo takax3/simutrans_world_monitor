@@ -72,6 +72,6 @@ class chk_stucked_cmd extends monitoring_base_cmd {
       }
       pl_stucked_msgs.append([format(text_player_title, pls[0].get_name()), out_str])
     }
-    embed_warn(text_title, text_desc, null, pl_stucked_msgs)
+    embed_warn(text_title, text_desc, pl_stucked_msgs)
   }
 }
