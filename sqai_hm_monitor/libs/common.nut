@@ -1,6 +1,7 @@
 // よく使うであろう関数をまとめたファイル．
 // メッセージ定義
-local text_invalid_idx = "指定したプレイヤー番号の会社はありません。綴りに誤りがないか確認してください。\nプレイヤー番号は`?player`で取得できます。"
+local text_invalid_idx_title = "指定したプレイヤー番号の会社はありません。"
+local text_invalid_idx_desc = "綴りに誤りがないか確認してください。\nプレイヤー番号は`?player`で取得できます。"
 
 include("libs/embed_out")
 // str:受信文字列, idx:番号の位置
@@ -15,7 +16,7 @@ function get_player_from_num(str, idx) {
     //ここではなにもしない．
   }
   if(player==null || !player.is_valid()) {
-    embed_error(text_invalid_idx)
+    embed_error(text_invalid_idx_title, text_invalid_idx_desc)
     return null
   } else {
     return player

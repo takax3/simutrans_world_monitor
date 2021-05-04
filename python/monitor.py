@@ -17,7 +17,7 @@ FILE_CMD = config.DIRECTORY + '/file_io/cmd.txt'
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     channel = client.get_channel(config.CHANNEL_ID)
-    await channel.send(embed=discord.Embed(title=config.TEXT_HELLO, color=0x00ff00))
+    await channel.send(embed=discord.Embed(title=config.TEXT_HELLO_TITLE, description=config.TEXT_HELLO_DESC, color=0x00ff00))
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -42,11 +42,11 @@ async def on_message(message):
     with open(FILE_CMD, encoding='utf-8') as f:
         s = f.read()
         if s and not s.startswith('empty'):
-            await channel.send(config.TEXT_BUSY)
+            await channel.send(embed=discord.Embed(title=config.TEXT_BUSY_TITLE, description=config.TEXT_BUSY_DESC, color=0xff0000))
             return
     with open(FILE_CMD, mode='w', encoding='utf-8') as f:
         f.write(content[1:])
-        set_waiting_message(await channel.send(config.TEXT_WAIT))
+        set_waiting_message(await channel.send(embed=discord.Embed(title=config.TEXT_WAIT_TITLE, description=config.TEXT_WAIT_DESC, color=0x00ff00)))
         set_prev_out_hash(None)
         
 def generate_io_files():

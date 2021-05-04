@@ -1,7 +1,8 @@
 // メッセージ定義
 local text_require_param_title = "路線を番号で指定してください。 "
 local text_require_param_desc = "このコマンドの使用方法は`?停車駅,<路線番号>,[停車場数]`です。"
-local text_invalid_param = "%s 番の路線はありません。"
+local text_invalid_param_title = "%s 番の路線はありません。"
+local text_invalid_param_desc = "綴りに誤りがないか確認してください。\n路線番号は`?route,<会社番号>,[路線属性]`で取得できます。"
 local text_halt_title_rank = "路線 %s （%s）の停車駅の乗降者数ランキングは次のとおりです。 " //%sは停留所名, 会社名
 local text_halt_rank = "%s 人 ... %s\n" //%sは乗降客数，駅名
 local text_halt_caption_rank = "※利用者数は前月のものです。"
@@ -97,7 +98,7 @@ class get_halts_cmd {
   function exec(str) {
     local params = split(str,",")
     if(params.len()==1) {
-      embed_error(format(text_require_param_title, cmd_str), text_require_param_desc)
+      embed_error(text_require_param_title, text_require_param_desc)
       return
     }
     
@@ -109,7 +110,7 @@ class get_halts_cmd {
       // pass
     }
     if(line==null || !line.is_valid()) {
-      embed_error(format(text_invalid_param, params[1]))
+      embed_error(format(text_invalid_param_title, params[1]), text_invalid_param_desc)
       return
     }
     // lineには存在する路線が代入されていることが保証された
