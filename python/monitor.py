@@ -34,7 +34,7 @@ async def on_message(message):
     elif AHNS_dictionary == 0 :
         knAHNS_1, knAHNS_2 = content.split(',', 1)
         if knAHNS_2 in knAHNS.knAHNSs:
-            await channel.send(knAHNS.knAHNSs[knAHNS_2])
+            await channel.send(embed=knAHNS.knAHNSs[knAHNS_2])
             return
         else:
             await channel.send('指定された名前の記事はありません。')

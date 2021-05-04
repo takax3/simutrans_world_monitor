@@ -1,10 +1,11 @@
 // メッセージ定義
-local text_require_param = "路線を番号で指定してください。 \nこのコマンドの使用方法は`?停車駅,<路線番号>,[停車場数]`です。"
+local text_require_param_title = "路線を番号で指定してください。 "
+local text_require_param_desc = "このコマンドの使用方法は`?停車駅,<路線番号>,[停車場数]`です。"
 local text_invalid_param = "%s 番の路線はありません。"
-local text_halt_title_rank = "路線 %s （%s）の停車駅の乗降者数ランキングは次のとおりです。 \n" //%sは停留所名, 会社名
+local text_halt_title_rank = "路線 %s （%s）の停車駅の乗降者数ランキングは次のとおりです。 " //%sは停留所名, 会社名
 local text_halt_rank = "%s 人 ... %s\n" //%sは乗降客数，駅名
 local text_halt_caption_rank = "※利用者数は前月のものです。"
-local text_halt_title_all = "路線 %s （%s） の停車駅は次のとおりです。\n" //%sは停留所名, 会社名
+local text_halt_title_all = "路線 %s （%s） の停車駅は次のとおりです。" //%sは停留所名, 会社名
 local text_halt_caption_overcrowded = "太字の駅はいわゆる赤棒が立っています。"
 
 include("libs/common")
@@ -96,7 +97,7 @@ class get_halts_cmd {
   function exec(str) {
     local params = split(str,",")
     if(params.len()==1) {
-      embed_error(text_require_param)
+      embed_error(format(text_require_param_title, cmd_str), text_require_param_desc)
       return
     }
     

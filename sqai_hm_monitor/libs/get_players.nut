@@ -1,5 +1,5 @@
 // メッセージ定義
-local text_title = "このマップには次の会社が存在します。\n"
+local text_title = "このマップには次の会社が存在します。"
 local text_player = "%d:%s\n" //%iは番号， %sはプレイヤー名
 
 include("libs/common")

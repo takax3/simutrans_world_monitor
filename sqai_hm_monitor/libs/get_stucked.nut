@@ -1,5 +1,6 @@
 // メッセージ定義
-local text_title = "【デッドロック情報】次の路線は多数の車両が停止状態になっています。デッドロックの可能性が高いため、確認をおすすめします。\n"
+local text_title = "【デッドロック情報】次の路線はデッドロックの可能性が高い状態です。"
+local text_desc = "具体的には、多数の車両が停止状態になっています。デッドロックの可能性が高いため、確認をおすすめします。"
 local text_player_title = "<%s>\n" //%sはプレイヤー名
 
 include("libs/monitoring_base")
@@ -72,6 +73,6 @@ class chk_stucked_cmd extends monitoring_base_cmd {
       }
       pl_stucked_msgs.append([format(text_player_title, pls[0].get_name()), out_str])
     }
-    embed_warn(text_title, null, pl_stucked_msgs)
+    embed_warn(text_title, text_desc, null, pl_stucked_msgs)
   }
 }

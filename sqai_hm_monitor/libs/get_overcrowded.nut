@@ -1,10 +1,10 @@
 // メッセージ定義
 // コマンドに対する応答
 local textc_no_player = "%s の駅では混雑は発生していません。" //%sはプレイヤー名
-local textc_player_title = "%s の次の駅が混雑しています。\n" //%sはプレイヤー名
+local textc_player_title = "%s の次の駅が混雑しています。" //%sはプレイヤー名
 local textc_halt_info = "%s ... %d/%d\n" //赤棒状態の停留所情報． %sは停留所名． %dは待機数，定員．
 // 監視によるメッセージ
-local textm_oc_exists = "【混雑情報】次の駅が混雑しています。\n\n"
+local textm_oc_exists = "【混雑情報】次の駅が混雑しています。"
 local textm_player_title = "<%s>\n" //%sはプレイヤー名
 
 include("libs/monitoring_base")
