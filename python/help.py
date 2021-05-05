@@ -110,3 +110,9 @@ helps['?鯖主の最寄り駅'] = discord.Embed(title="お前を消す方法", d
 helps['?OTNP'] = discord.Embed(title="OTNP", description="でっけえ男性器 飛んでるよ 飛んでるよ", color=0x00ff00)
 
 helps['?デドロイト市警だ！'] = discord.Embed(title="デドロイト市警だ！", description="君？嘘をつくのは、一体良くない。", color=0x00ff00)
+
+helps['?ヘイト行為'] = discord.Embed(title="ヘイト行為", description="仏塔鉄道は1等旅客専業となりました。全謬爆劣2等旅客はバスでもﾂｶｯﾃﾛ", color=0x00ff00)
+
+helps['?イオン'] = discord.Embed(title="イオン", description="ヘイト企業イオンは謝罪しろ！", color=0x00ff00)
+
+helps['?高鷲'] = discord.Embed(title="高鷲", description="ここで一句\n\nちんちんは\n​　いくら揉んでも\n​　　かまいません", color=0x00ff00)

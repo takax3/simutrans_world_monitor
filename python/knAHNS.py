@@ -52,10 +52,12 @@ knAHNSs['あほなす'] = discord.Embed(title="あほなす", description="**あ
 # 21/05/04追加記事 合計1記事
 knAHNSs['OTNP'] = discord.Embed(title="OTNP", description="【性的な記述あり！閲覧注意！】閲覧したい方は黒塗りされている部分をクリックもしくはタップしてください。\n||**OTNP（おーてぃーえぬぴー）**とは、男性器を模したネタアドオンである。\n\n休日自衛隊氏の制作で、JHNSに導入されたのち、AHNSではAHNS-F1の1回目のPak更新で導入された。しかし、AHNSでは賛否両論で、本アドオンに関する苦情が頻発した。その後、名指しこそされていないが「『公序良俗に反すると思われるアドオン』の使用にあたって各参加者の感情に配慮するよう」サーバー管理者の通知があった上、Pakset作成者からも「次回のPak更新から削除する」という旨の発言があった。||", color=0x00ff00)
 
-#ツールカテ 合計2記事
+#ツールカテ 合計3記事
 #初期記事 合計2記事
 knAHNSs['AHNSbot'] = discord.Embed(title="AHNSbot", description="**AHNSbot（あはんすぼっと）**とは、Discord上でAHNSゲーム内の様々な情報を提供するbotである。\n\nAHNSbotは、その動作にSimutrans world monitor( <https://github.com/teamhimeh/simutrans_world_monitor/blob/main/README.md> )をカスタマイズしたものを使用している。本記事では、主なカスタマイズ部分の仕様について記載する。本家Simutrans world monitorの仕様は上記のリンクを、コマンドの詳細については`?help` を参照されたい。\n\nAHNSbot独自の仕様として、コマンドの詳細を返す`?help` コマンドや英語でのコマンド入力の実装、文体の標準語化が行われている。さらに、らくらくNS( <https://github.com/ahakuoku/rakurakuNS/blob/main/readme.md> )と連携し、オートセーブの予告やサーバーダウンの通知なども行われている。また、おまけ機能として百科事典のようなテキストを返す`?これなにAHNS` コマンドや隠しコマンドが実装されている。", color=0x00ff00)
 knAHNSs['らくらくNS'] = discord.Embed(title="らくらくNS", description="**らくらくNS（らくらくえぬえす）**とは、鯖主が開発・公開しているNSの管理を自動化するソフトである。\n\nらくらくNSそのものはAHNSと直接関係はないが、元々本ソフトはAHNS向けに開発されているなどAHNSとのかかわりが深いため、これなにAHNSでの解説を行う。詳細な仕様については公式のreadme( <https://github.com/ahakuoku/rakurakuNS/blob/main/readme.md> )を参照されたい。\n\nらくらくNSは、サーバーダウン時の自動復旧、任意の間隔でのオートセーブ、さらに付随して必要な動作を自動で行うソフトであり、コードはbatで書かれている。python移植の構想もあるものの、2021年4月現在、進捗はみられていない。らくらくNSのような自動化ソフトは他にも存在するが、特徴的な機能としてはSimutrans world monitor経由でのDiscord連携機能が存在する。", color=0x00ff00)
+# 21/05/05追加記事 合計1記事
+knAHNSs['これなにAHNS'] = discord.Embed(title="これなにAHNS", description="これなにAHNS（これなにあはんす）とは、AHNSbotのコマンドの一つである。\n\nこれなにAHNSは、Wikiのような情報を返すコマンドであり、2021年5月現在、この記事を含め20記事が存在する。その設立は「Wiki形式にすると管理が面倒になる事が目に見えている」というのが理由の一つであり、本コマンドはその代替を担うものとされている。また、最終的な目標は「AHNS関連の全ての情報を網羅する」ことではあるが、その目標を達成するにあたって、（特にセンシティブな話題に触れた）記事には中立性が求められるが、記事作成の優先度はなく、この目標を少しでも早く達成するため、 <#780726003739263046> での記事・カテゴリー作成申請を受け付けている。", color=0x00ff00)
 
 #先鋭語カテ 合計13記事
 #初期記事 合計6記事

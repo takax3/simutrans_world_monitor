@@ -37,7 +37,7 @@ async def on_message(message):
             await channel.send(embed=knAHNS.knAHNSs[knAHNS_2])
             return
         else:
-            embed=discord.Embed(title="指定された名前の記事はありません。", description="記事一覧は`?これなにAHNS,list,[カテゴリ名]`で取得できます。", color=0x00ff00)
+            embed=discord.Embed(title="指定された名前の記事はありません。", description="記事一覧は`?これなにAHNS,list,[カテゴリ名]`で取得できます。", color=0xff0000)
             await channel.send(embed=embed)
             return
     with open(FILE_CMD, encoding='utf-8') as f:
