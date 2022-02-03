@@ -1,4 +1,5 @@
 // メッセージ定義
+// メッセージ定義
 local text_require_param_title = "駅名を指定してください。"
 local text_require_param_desc = "このコマンドの使用方法は`?待機,<駅名>,[エントリ数]`です。"
 local text_invalid_param = "停車場 %s は存在しません。綴りに間違いがないか確認してください。"
@@ -17,7 +18,7 @@ class get_waiting_cmd {
   function exec(str) {
     local params = split(str,",")
     if(params.len()==1) {
-      embed_error(format(text_require_param_text), text_require_param_desc)
+      embed_error(format(text_require_param_title), text_require_param_desc)
       return
     }
     local sta_name = strip(params[1])

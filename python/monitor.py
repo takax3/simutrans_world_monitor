@@ -24,7 +24,7 @@ async def on_ready():
 async def on_message(message):
     channel = client.get_channel(config.CHANNEL_ID)
     # 指定チャンネルでの指定フォーマットの人間のメッセージのみ反応
-    content = message.content.replace('？','?').replace('，',',').replace('、',',')
+    content = message.content.replace('？','?').replace('，',',').replace('、',',').replace('knAHNS','これなにAHNS')
     AHNS_dictionary = content.find('?これなにAHNS')
     if message.author.bot or message.channel != channel or content[0]!='?' or len(content)<2:
         return
@@ -37,7 +37,7 @@ async def on_message(message):
             await channel.send(embed=knAHNS.knAHNSs[knAHNS_2])
             return
         else:
-            embed=discord.Embed(title="指定された名前の記事はありません。", description="記事一覧は`?これなにAHNS,list,[カテゴリ名]`で取得できます。", color=0xff0000)
+            embed=discord.Embed(title="指定された名前の記事はありません。", description="このコマンドの正しい使用方法は、`?これなにAHNS,<記事名/list>,[カテゴリー]`です。\nコマンド文にスペースが入っていたりすると正しく動作しません。", color=0xff0000)
             await channel.send(embed=embed)
             return
     with open(FILE_CMD, encoding='utf-8') as f:
