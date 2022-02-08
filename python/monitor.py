@@ -37,7 +37,7 @@ async def on_message(message):
         else:
             with open(FILE_CMD, mode='w', encoding='utf-8') as f:
                 f.write('empty')
-            await channel.send(embed=discord.Embed(title=config.TEXT_RESET_TITLE, description=config.TEXT_RESET_DESC, color=0xff0000))
+            await channel.send(embed=discord.Embed(title=config.TEXT_RESET_TITLE, description=config.TEXT_RESET_DESC, color=0x00ff00))
         return
     elif AHNS_dictionary == 0 :
         knAHNS_1, knAHNS_2 = content.split(',', 1)

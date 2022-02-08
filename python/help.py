@@ -102,7 +102,7 @@ helps['?かわぎえ'] = discord.Embed(title="かわぎえ", description="ぎえ
 
 helps['?お前を消す方法'] = discord.Embed(title="お前を消す方法", description="邪魔だったよね、ごめんね。もう少し役に立てるように頑張るよ。", color=0x00ff00)
 
-helps['?鯖主の最寄り駅'] = discord.Embed(title="お前を消す方法", description="<:kamioooka_A:800358960325853254><:stop:800361810506022972>\n<:kamioooka_B:800359063513858058><:stop:800361810506022972>", color=0x00ff00)
+# helps['?鯖主の最寄り駅'] = discord.Embed(title="お前を消す方法", description="<:kamioooka_A:800358960325853254><:stop:800361810506022972>\n<:kamioooka_B:800359063513858058><:stop:800361810506022972>", color=0x00ff00)
 
 # helps['?OTNP'] = discord.Embed(title="OTNP", description="でっけえ男性器 飛んでるよ 飛んでるよ", color=0x00ff00)
 
@@ -113,3 +113,5 @@ helps['?デドロイト市警だ！'] = discord.Embed(title="デドロイト市�
 # helps['?イオン'] = discord.Embed(title="イオン", description="ヘイト企業イオンは謝罪しろ！", color=0x00ff00)
 
 # helps['?高鷲'] = discord.Embed(title="高鷲", description="ここで一句\n\nちんちんは\n​　いくら揉んでも\n​　　かまいません", color=0x00ff00)
+
+helps['?かわごえ'] = discord.Embed(title="かわごえ", description="かわごえさんは、AHNSの事実上の副鯖主として、AHNSの発展に尽力し、AHNSを大手NS鯖とするために多大な功績を残した人です。", color=0x00ff00)
