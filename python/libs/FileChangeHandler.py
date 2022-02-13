@@ -35,7 +35,7 @@ class FileChangeHandler(FileSystemEventHandler):
     def plain_text_out(self):
         with open(FILE_OUT, encoding='utf-8') as f:
             s = self.discord_text_escape(f.read())
-            if s=='empty' or self.is_same_message(s):
+            if s is None or s=='empty' or self.is_same_message(s):
                 return
             ch = client.get_channel(config.CHANNEL_ID)
             self.remove_waiting_message(ch)
@@ -65,6 +65,8 @@ class FileChangeHandler(FileSystemEventHandler):
             ch = client.get_channel(config.CHANNEL_ID)
             self.remove_waiting_message(ch)
             jo = json.JSONDecoder().raw_decode(s)[0]
+            if jo["description"] is None:
+                jo["description"] = ""
             if len(jo["description"]) <= DISCORD_MAX_TEXT_LENGTH:
                 embed = discord.Embed(title=jo["title"], description=self.discord_text_escape(jo["description"]), color=jo["color"])
                 if jo["fields"]:
