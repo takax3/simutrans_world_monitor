@@ -5,7 +5,7 @@ import discord
 
 helps = {}
 
-helps['?help'] = discord.Embed(title="コマンド一覧", description="本botで使用できるコマンドは次の通りです。\n※helpコマンド・addressコマンド以外はSimutrans起動時以外使用できません。\n引数の区切りはコンマ(`,`)で行います。\n`<>`のカッコ内は、その引数が必須であることを示します。（カッコは外してください）\n`[]`のカッコ内は、その引数がオプションであることを示します。（カッコは外してください）", color=0x00ff00)
+helps['?help'] = discord.Embed(title="コマンド一覧", description="本botで使用できるコマンドは次の通りです。\n※helpコマンド・ipコマンド以外はSimutrans起動時以外使用できません。\n引数の区切りはコンマ(`,`)で行います。\n`<>`のカッコ内は、その引数が必須であることを示します。（カッコは外してください）\n`[]`のカッコ内は、その引数がオプションであることを示します。（カッコは外してください）", color=0x00ff00)
 helps['?help'].add_field(name="`?help`", value="本botのヘルプを返します。", inline=False)
 helps['?help'].add_field(name="`?wait,<駅名>,[エントリ数]`", value="指定された停車場の待機客およびその行き先を返します。エントリ数のデフォルト値は5です。", inline=False)
 helps['?help'].add_field(name="`?player`", value="ゲームに参加している会社一覧と、その番号を返します。ここで返される番号は、プレイヤー番号を指定するコマンドで使用します。", inline=False)
