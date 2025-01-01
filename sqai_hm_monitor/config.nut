@@ -8,6 +8,7 @@ include("libs/get_stucked")
 include("libs/get_finance")
 include("libs/get_lines")
 include("libs/get_halts")
+include("libs/get_convoys")
 include("libs/chk_count")
 
 //コマンド一覧．不要な機能があればコメントアウトしてください．
@@ -26,6 +27,9 @@ commands["路線"] <- get_lines_cmd()
 commands["route"] <- get_lines_cmd()
 commands["停車駅"] <- get_halts_cmd()
 commands["halt"] <- get_halts_cmd()
+commands["編成"] <- get_convoys_cmd()
+commands["車両"] <- get_convoys_cmd()
+commands["convoy"] <- get_convoys_cmd()
 
 //モニタリング一覧．不要な機能があればコメントアウトしてください．
 monitored.append(chk_overcrowded_cmd(0.06, 1.5, 1000)) //赤棒検知． 引数...(頻度,警報を出す倍率, 警報を出す下限)
