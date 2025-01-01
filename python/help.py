@@ -17,11 +17,11 @@ helps['?help'].add_field(name="`?halt,<路線番号>,[停車場数]`", value="�
 helps['?help'].add_field(name="`?ip`", value="接続先を返します。", inline=False)
 helps['?help'].add_field(name="`?about`", value="このBotの概要を返します。", inline=False)
 
-helps['?接続先'] = discord.Embed(title="接続先情報", value="​", description="ahns.simutrans.info:65535", color=0x00ff00)
+helps['?接続先'] = discord.Embed(title="接続先情報", description="ahns.simutrans.info:65535", color=0x00ff00)
 helps['?接続先'].set_footer(text="2021年12月現在")
-helps['?address'] = discord.Embed(title="接続先情報", value="​", description="ahns.simutrans.info:65535", color=0x00ff00)
+helps['?address'] = discord.Embed(title="接続先情報", description="ahns.simutrans.info:65535", color=0x00ff00)
 helps['?address'].set_footer(text="2021年12月現在")
-helps['?ip'] = discord.Embed(title="接続先情報", value="​", description="ahns.simutrans.info:65535", color=0x00ff00)
+helps['?ip'] = discord.Embed(title="接続先情報", description="ahns.simutrans.info:65535", color=0x00ff00)
 helps['?ip'].set_footer(text="2021年12月現在")
 
-helps['?about'] = discord.Embed(title="このBotについて", value="​", description="このBotは、Discord上でゲーム内の様々な情報を提供するbotです。\n\nこのBotは、Simutrans world monitor( <https://github.com/teamhimeh/simutrans_world_monitor/blob/main/README.md> )をカスタマイズしたものを使用しています。\n仕様の詳細は`?help`と入力してください。ソースコードはGitHub( <https://github.com/ahakuoku/simutrans_world_monitor/tree/knAHNS_deleted> )をご覧ください。", color=0x00ff00)
+helps['?about'] = discord.Embed(title="このBotについて", description="このBotは、Discord上でゲーム内の様々な情報を提供するbotです。\n\nこのBotは、Simutrans world monitor( <https://github.com/teamhimeh/simutrans_world_monitor/blob/main/README.md> )をカスタマイズしたものを使用しています。\n仕様の詳細は`?help`と入力してください。ソースコードはGitHub( <https://github.com/ahakuoku/simutrans_world_monitor/tree/knAHNS_deleted> )をご覧ください。", color=0x00ff00)
