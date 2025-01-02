@@ -55,7 +55,6 @@ class FileChangeHandler(FileSystemEventHandler):
                     message_list += [message]
                 for i, message in enumerate(message_list):
                     coro = ch.send(f'(Part {i + 1}/{len(message_list)})\n``{message}``')
-                    asyncio.run_coroutine_threadsafe(coro, client.loop)
                     fut = asyncio.run_coroutine_threadsafe(coro, client.loop)
                     try:
                         fut.result()
