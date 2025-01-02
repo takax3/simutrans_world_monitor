@@ -2,8 +2,7 @@
 local text_title = "%s の%s編成一覧（計 %d 編成） \n" //%sは会社名、属性名。%dは編成数
 local text_convoy = "%d : %s\n" //%dは番号， %sは編成名
 local text_convoy_verbose = "\"%s\",%d,%d,%d,\"%s\"\n" //%dは(x, y, z)座標， %sは路線名、編成名
-local text_no_convoys = "%s 管轄の編成はありません。" // %sは会社名
-local text_no_convoys_with_waytype = "%s 管轄の路線属性 %s の編成はありません。" //%sは会社名、属性名
+local text_no_convoys = "%s 管轄の路線属性 %s の編成はありません。" //%sは会社名、属性名
 local text_invalid_waytype_title = "路線属性 %s は指定できません。" //%sは属性名
 local text_invalid_waytype_desc = "指定可能な編成属性は次のとおりです。"
 local text_none_waytype = "このコマンドの実行には路線属性の設定が必須です。"
@@ -92,11 +91,7 @@ class get_convoys_cmd {
     local wt_name = waytype==null ? "" : waytype[1]
     local title = format(text_title, player.get_name(), wt_name, wt_cnt)
     if (wt_cnt==0) {
-      if (waytype!=null) {
-        embed_error(format(text_no_convoys_with_waytype,player.get_name(),wt_name))
-      } else {
-        embed_error(format(text_no_convoys,player.get_name()))
-      }
+      embed_error(format(text_no_convoys,player.get_name(),wt_name))
     } else {
       embed_normal(title, rstrip(convoys_str))
     }
